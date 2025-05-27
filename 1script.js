@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Търсене на човек по ID</title>
+</head>
+<body>
+  <h1>Търсене на човек по ID</h1>
+
+  <label for="personId">Въведи ID:</label>
+  <input type="number" id="personId" min="1" />
+  <button onclick="searchPerson()">Търси</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    // Данни за хора (като "база данни" в масив от обекти)
+    const people = [
+      { id: 1, name: "Иван Иванов", age: 30, city: "София" },
+      { id: 2, name: "Мария Петрова", age: 25, city: "Пловдив" },
+      { id: 3, name: "Георги Георгиев", age: 40, city: "Варна" },
+    ];
+
+    function searchPerson() {
+      const input = document.getElementById("personId");
+      const result = document.getElementById("result");
+      const id = Number(input.value);
+
+      if (!id) {
+        result.textContent = "Моля, въведи валидно ID!";
+        return;
+      }
+
+      const person = people.find(p => p.id === id);
+
+      if (person) {
+        result.textContent = `ID: ${person.id}\nИме: ${person.name}\nВъзраст: ${person.age}\nГрад: ${person.city}`;
+      } else {
+        result.textContent = "Няма човек с това ID.";
+      }
+    }
+  </script>
+</body>
+</html>
